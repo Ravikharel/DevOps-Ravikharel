@@ -4,7 +4,7 @@ pipeline{
         stage("Running docker compose"){ 
             steps{ 
                 script { 
-                    sh "docker compose up -d" 
+                    sh "docker compose -f Jenkins/docker-compose.yml up -d" 
                 }
             }
         }
