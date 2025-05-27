@@ -1,0 +1,12 @@
+pipeline{
+    agent any
+    stages { 
+        stage("Running docker compose"){ 
+            steps{ 
+                script { 
+                    sh "docker compose -f Jenkins/docker-compose.yml up -d" 
+                }
+            }
+        }
+    }
+}
