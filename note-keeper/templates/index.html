@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Keeper</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: sans-serif;
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .note-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .note-item:last-child {
+            border-bottom: none;
+        }
+        .note-content {
+            flex-grow: 1;
+            margin-right: 15px;
+        }
+        .timestamp {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4 text-center">My Note Keeper</h1>
+
+        <form action="{{ url_for('add_note') }}" method="POST" class="mb-4">
+            <div class="form-group">
+                <label for="note_content">New Note:</label>
+                <textarea class="form-control" id="note_content" name="note_content" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Add Note</button>
+        </form>
+
+        <hr>
+
+        <h2 class="mt-4 mb-3">Stored Notes:</h2>
+        {% if notes %}
+            <ul class="list-group">
+                {% for note in notes %}
+                <li class="list-group-item note-item">
+                    <div>
+                        <p class="note-content mb-1">{{ note.content }}</p>
+                        <small class="timestamp">Added: {{ note.timestamp }}</small>
+                    </div>
+                    <form action="{{ url_for('delete_note', note_id=note.id) }}" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-sm btn-danger">× Delete</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">No notes yet. Add one above!</p>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

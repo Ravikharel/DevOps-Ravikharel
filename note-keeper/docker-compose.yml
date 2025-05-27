@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .  # Build the image from the Dockerfile in the current directory
+    container_name: note_keeper_app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - FLASK_ENV=development
+
+# You can add other environment variables above 👆
+
