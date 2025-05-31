@@ -4,15 +4,15 @@ pipeline{
         stage("Building docker images"){ 
             steps{ 
                 script { 
-                    sh "docker image build -t localhost:5000/flask-app:v1 To-Do-list/backend/. " 
-                    sh "docker image build -t localhost:5000/nginx:v1 To-Do-list/frontend/. "
+                    sh "docker image build -t localhost:5001/flask-app:v1 To-Do-list/backend/. " 
+                    sh "docker image build -t localhost:5001/nginx:v1 To-Do-list/frontend/. "
                 }
             }
         }
         stage("Building a local registry"){ 
             steps{ 
                 script { 
-                    sh "docker run -d -p 5000:5000 --restart=always --name registry registry:2"
+                    sh "docker run -d -p 5001:5001 --restart=always --name registry registry:2"
                 }
             }
         }
