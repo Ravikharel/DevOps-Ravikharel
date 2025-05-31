@@ -19,8 +19,8 @@ pipeline{
         stage("Pushing images to local registry"){ 
             steps{ 
                 script { 
-                    sh "docker image push localhost:5000/flask-app:v1"
-                    sh "docker image push localhost:5000/nginx:v1"
+                    sh "docker image push localhost:5001/flask-app:v1"
+                    sh "docker image push localhost:5001/nginx:v1"
                 }
             }
         }
