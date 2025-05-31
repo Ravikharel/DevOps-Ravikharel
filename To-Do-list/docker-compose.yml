@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: locahost:5000/nginx:v1
+    image: localhost:5000/nginx:v1
     ports:
       - "80:80"
     depends_on:
