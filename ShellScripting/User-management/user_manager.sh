@@ -23,6 +23,10 @@ while true; do
 	case $choice in 
 		1)
 			read -p "Enter the username:" username
+			if [[ "$username" == "root" ]]; then
+				echo "cannot perform this operation"
+				exit 1
+			fi
 			if id "$username" &>/dev/null; then
 				echo "user '$username' already exists!"
 			else
@@ -33,6 +37,10 @@ while true; do
 			;;
 		2)
 			read -p "Enter the username:" username
+			if [[ "$username" == "root" ]]; then
+                                echo "cannot perform this operation"
+                                exit 1
+                        fi
 			if id "$username" &>/dev/null; then
 				userdel "$username"
 				echo "User '$username' is deleted Sucessfully!"
